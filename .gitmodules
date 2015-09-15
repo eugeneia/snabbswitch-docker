@@ -1,0 +1,6 @@
+[submodule "qemu/SnabbCo/qemu"]
+	path = qemu/SnabbCo/qemu
+	url = https://github.com/SnabbCo/qemu
+[submodule "kernel/ubuntu-trusty/ubuntu-trusty"]
+	path = kernel/ubuntu-trusty/ubuntu-trusty
+	url = git://kernel.ubuntu.com/ubuntu/ubuntu-trusty.git
