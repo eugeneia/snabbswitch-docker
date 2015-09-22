@@ -22,9 +22,9 @@ context:
 	$(Q) (mkdir -p context)
 
 assets/qemu: assets
-	$(E) "COMPILE	QEMU $(NFV_QEMU)"
-	$(Q) (cd qemu/$(NFV_QEMU); make)
+	$(E) "COPY	QEMU $(NFV_QEMU)"
 	$(Q) (cp -r qemu/$(NFV_QEMU)/qemu assets/qemu)
+	$(Q) (cp -r qemu/$(NFV_QEMU)/Makefile assets/qemu/Makefile.qemu)
 
 assets/bzImage: assets context
 	$(E) "COMPILE	Linux $(NFV_GUEST_KERNEL)"
@@ -49,4 +49,4 @@ clean:
 	$(E) "RM        assets context"
 	$(Q)-rm -rf assets context
 
-.PHONY: clean image
+.PHONY: clean image context assets
