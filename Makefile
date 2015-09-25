@@ -45,6 +45,12 @@ image: assets/qemu assets/bzImage assets/qemu.img assets/qemu-dpdk.img
 	$(E) "DOCKER BUILD	$(IMAGE)"
 	$(Q) (cp image/$(IMAGE)/Dockerfile assets/ && docker build -t $(IMAGE) assets/)
 
+install: assets/qemu assets/bzImage assets/qemu.img assets/qemu-dpdk.img
+	$(E) "INSTALL	assets/* => ~/.test_env/"
+	$(Q) (mkdir -p ~/.test_env/)
+	$(Q) (cp -r assets/* ~/.test_env/)
+	$(Q) (cd ~/.test_env/qemu && make -f Makefile.qemu)
+
 clean:
 	$(E) "RM        assets context"
 	$(Q)-rm -rf assets context
