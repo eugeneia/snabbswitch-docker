@@ -28,7 +28,8 @@ assets/qemu: assets
 
 assets/bzImage: assets context
 	$(E) "COMPILE	Linux $(NFV_GUEST_KERNEL)"
-	$(Q) (cd kernel/$(NFV_GUEST_KERNEL); make)
+	$(Q) (docker run -i -v $(shell pwd)/kernel/$(NFV_GUEST_KERNEL):/kernel eugeneia/kernel-build-env \
+		bash -c "(cd /kernel && make)")
 	$(Q) (cp kernel/$(NFV_GUEST_KERNEL)/$(NFV_GUEST_KERNEL)/arch/x86/boot/bzImage assets/bzImage)
 	$(Q) (cp -r kernel/$(NFV_GUEST_KERNEL)/modules context/)
 	$(Q) (cp kernel/$(NFV_GUEST_KERNEL)/linux-headers-*.deb context/)
@@ -51,8 +52,11 @@ install: assets/qemu assets/bzImage assets/qemu.img assets/qemu-dpdk.img
 	$(Q) (cp -r assets/* ~/.test_env/)
 	$(Q) (cd ~/.test_env/qemu && make -f Makefile.qemu)
 
+kernel-build-env:
+	docker build -t eugeneia/kernel-build-env kernel/build_env/
+
 clean:
 	$(E) "RM        assets context"
 	$(Q)-rm -rf assets context
 
-.PHONY: clean image context assets
+.PHONY: clean image context assets kernel-build-env
