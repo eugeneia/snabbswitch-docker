@@ -10,6 +10,7 @@ NFV_GUEST_OS=ubuntu
 NFV_GUEST_VERSION=14.04
 NFV_DPDK_VERSION=vosys
 IMAGE=eugeneia/snabb-nfv-test
+VM_TARBALL=vm-$(NFV_GUEST_KERNEL)-$(NFV_GUEST_VERSION)-dpdk-$(NFV_DPDK_VERSION).tar.gz
 
 all: assets/qemu assets/bzImage assets/qemu.img image
 
@@ -46,17 +47,17 @@ image: assets/qemu assets/bzImage assets/qemu.img assets/qemu-dpdk.img
 	$(E) "DOCKER BUILD	$(IMAGE)"
 	$(Q) (cp image/$(IMAGE)/Dockerfile assets/ && docker build -t $(IMAGE) assets/)
 
-install: assets/qemu assets/bzImage assets/qemu.img assets/qemu-dpdk.img
-	$(E) "INSTALL	assets/* => ~/.test_env/"
-	$(Q) (mkdir -p ~/.test_env/)
-	$(Q) (cp -r assets/* ~/.test_env/)
-	$(Q) (cd ~/.test_env/qemu && make -f Makefile.qemu)
+$(VM_TARBALL): assets/qemu assets/bzImage assets/qemu.img assets/qemu-dpdk.img
+	$(E) "TARBALL	$(VM_TARBALL)"
+	$(Q) (cd assets; tar cvzf ../$(VM_TARBALL) bzImage qemu.img qemu-dpdk.img)
+
+tarball: $(VM_TARBALL)
 
 kernel-build-env:
 	docker build -t eugeneia/kernel-build-env kernel/build_env/
 
 clean:
-	$(E) "RM        assets context"
-	$(Q)-rm -rf assets context
+	$(E) "RM        assets context $(VM_TARBALL)"
+	$(Q)-rm -rf assets context $(VM_TARBALL)
 
 .PHONY: clean
