@@ -20,7 +20,7 @@ mount -t hugetlbfs nodev /hugetlbfs\n\
 echo 64 > /sys/devices/system/node/node0/hugepages/hugepages-2048kB/nr_hugepages\n\
 modprobe uio\n\
 insmod /root/dpdk/x86_64-native-linuxapp-gcc/kmod/igb_uio.ko\n\
-/root/dpdk/tools/dpdk_nic_bind.py --bind=igb_uio 00:03.0\n\
+/root/dpdk/tools/igb_uio_bind.py --bind=igb_uio 00:03.0\n\
 screen -d -m /root/dpdk/examples/l2fwd/x86_64-native-linuxapp-gcc/l2fwd -c 0x1 -n1 -- -p 0x1\n\
 exit 0\n'\
 > /etc/rc.local
