@@ -4,3 +4,7 @@
 [submodule "kernel/ubuntu-trusty/ubuntu-trusty"]
 	path = kernel/ubuntu-trusty/ubuntu-trusty
 	url = git://kernel.ubuntu.com/ubuntu/ubuntu-trusty.git
+[submodule "qemu/vanilla/qemu"]
+	path = qemu/vanilla/qemu
+	url = git://git.qemu-project.org/qemu.git
+	branch = stable-2.4
