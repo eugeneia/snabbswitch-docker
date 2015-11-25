@@ -4,3 +4,7 @@
 [submodule "kernel/ubuntu-trusty/ubuntu-trusty"]
 	path = kernel/ubuntu-trusty/ubuntu-trusty
 	url = git://kernel.ubuntu.com/ubuntu/ubuntu-trusty.git
+[submodule "qemu/eugeneia/qemu"]
+	path = qemu/eugeneia/qemu
+	url = https://github.com/eugeneia/qemu.git
+	branch = v2.4.1-snabb

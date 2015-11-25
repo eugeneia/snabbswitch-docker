@@ -4,12 +4,12 @@ E= @echo
 #Q=
 #E= @:
 
-NFV_QEMU=SnabbCo
+NFV_QEMU=eugeneia
 NFV_GUEST_KERNEL=ubuntu-trusty
 NFV_GUEST_OS=ubuntu
 NFV_GUEST_VERSION=14.04
-NFV_DPDK_VERSION=snabb
-IMAGE=eugeneia/snabb-nfv-test
+NFV_DPDK_VERSION=eugeneia
+IMAGE=eugeneia/snabb-nfv-test-vanilla-cherry
 VM_TARBALL=vm-$(NFV_GUEST_KERNEL)-$(NFV_GUEST_VERSION)-dpdk-$(NFV_DPDK_VERSION).tar.gz
 
 all: assets/qemu assets/bzImage assets/qemu.img image
