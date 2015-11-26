@@ -8,7 +8,7 @@ RUN dpkg -i /root/linux-headers-*.deb && rm /root/linux-headers-*.deb
 
 RUN apt-get update && apt-get install -y git build-essential screen python pciutils
 
-RUN git clone --depth=1 --branch=v2.1.0-log-l2fwd https://github.com/eugeneia/dpdk.git /root/dpdk
+RUN git clone --depth=1 --branch=test_up_rx_desc https://github.com/eugeneia/dpdk.git /root/dpdk
 RUN (cd /root/dpdk; \
      export RTE_KERNELDIR=/lib/modules/$(ls /lib/modules/)/build/; \
      make T=x86_64-native-linuxapp-gcc config -j$(nproc); \
