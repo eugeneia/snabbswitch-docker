@@ -10,7 +10,8 @@ ubuntu-trusty/.config:
 	       debian.master/config/amd64/config.flavour.generic > .config; \
 	   echo CONFIG_VIRTIO_NET=m >> .config; \
 	   echo CONFIG_UIO=y >> .config; \
-	   echo CONFIG_DEBUG_INFO=n >> .config)
+	   echo CONFIG_DEBUG_INFO=n >> .config; \
+	   make olddefconfig)
 
 ubuntu-trusty/arch/x86/boot/bzImage:
 	@ (cd ubuntu-trusty; make bzImage -j$(NPROC))
