@@ -5,9 +5,9 @@ all: ubuntu-trusty/.config ubuntu-trusty/arch/x86/boot/bzImage modules linux-hea
 
 ubuntu-trusty/.config:
 	@ (cd ubuntu-trusty; \
-	   cat debian.master/config/config.common.ubuntu \
-	       debian.master/config/amd64/config.common.amd64 \
-	       debian.master/config/amd64/config.flavour.generic > .config; \
+	   cat ../config/config.common.ubuntu \
+	       ../config/amd64/config.common.amd64 \
+	       ../config/amd64/config.flavour.generic > .config; \
 	   echo CONFIG_VIRTIO_NET=m >> .config; \
 	   echo CONFIG_UIO=y >> .config; \
 	   echo CONFIG_DEBUG_INFO=n >> .config; \
