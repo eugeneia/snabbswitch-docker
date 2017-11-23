@@ -5,7 +5,7 @@ MAINTAINER Max Rottenkolber (@eugeneia)
 COPY modules /lib/modules
 RUN depmod $(ls lib/modules/)
 
-RUN apt-get update && apt-get install -y ethtool tcpdump netcat iperf
+RUN apt-get update && apt-get install -y ethtool tcpdump netcat iperf nmap ipsec-tools
 
 RUN cp /etc/init/tty1.conf /etc/init/ttyS0.conf \
     && sed -i '$s/.*/exec \/sbin\/getty -8 115200 ttyS0 linux -a root/' /etc/init/ttyS0.conf \
